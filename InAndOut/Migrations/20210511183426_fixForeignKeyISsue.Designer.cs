@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InAndOut.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210511181729_AddedExpenseTypeFK")]
-    partial class AddedExpenseTypeFK
+    [Migration("20210511183426_fixForeignKeyISsue")]
+    partial class fixForeignKeyISsue
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
