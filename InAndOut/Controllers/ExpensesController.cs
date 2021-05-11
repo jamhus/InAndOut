@@ -40,5 +40,29 @@ namespace InAndOut.Controllers
             }
             return View(model);
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id==0)
+            {
+                return NotFound();
+            }
+            var expense = _context.Expenses.Find(id);
+            if (expense == null) return NotFound();
+            return View(expense);
+            
+        }
+
+        // POST DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int id)
+        {
+            var expense = _context.Expenses.Find(id);
+            if (expense == null) return NotFound();
+            _context.Expenses.Remove(expense);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
