@@ -15,20 +15,28 @@
         {
             <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
-                    <tr>
-                        <th scope="col">Item name</th>
-                        <th scope="col">Borrower</th>
-                        <th scope="col">Lender</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Item name</th>
+                            <th scope="col">Borrower</th>
+                            <th scope="col">Lender</th>
+                            <th scope="col">Actions</th>
+                        </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td scope="row" width="30%">@item.ItemName</td>
-                            <td scope="row" width="30%">@item.Borrower</td>
-                            <td scope="row" width="30%">@item.Lender</td>
-                        </tr>
+                    <tr>
+                        <td scope="row" width="25%">@item.ItemName</td>
+                        <td scope="row" width="25%">@item.Borrower</td>
+                        <td scope="row" width="25%">@item.Lender</td>
+                        <td scope="row" width="25%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Items" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Items" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Dalete</a>
+                            </div>
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
