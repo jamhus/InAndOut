@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InAndOut.Data;
+using InAndOut.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,17 @@ namespace InAndOut.Controllers
 {
     public class ItemsController : Controller
     {
+        private readonly DataContext _context;
+
+        public ItemsController(DataContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Item> items = _context.Items.ToList();
+            return View(items);
         }
     }
 }
