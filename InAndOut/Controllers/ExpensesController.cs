@@ -1,5 +1,6 @@
 ﻿using InAndOut.Data;
 using InAndOut.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,21 +9,20 @@ using System.Threading.Tasks;
 
 namespace InAndOut.Controllers
 {
-    public class ItemsController : Controller
+    public class ExpensesController : Controller
     {
         private readonly DataContext _context;
-
-        public ItemsController(DataContext context)
+        public ExpensesController(DataContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: ExpensesController
+        public ActionResult Index()
         {
-            IEnumerable<Item> items = _context.Items.ToList();
+            IEnumerable<Expense> items = _context.Expenses.ToList();
             return View(items);
         }
-
         public IActionResult Create()
         {
             return View();
@@ -30,7 +30,7 @@ namespace InAndOut.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Item model)
+        public IActionResult Create(Expense model)
         {
             _context.Add(model);
             _context.SaveChanges();
