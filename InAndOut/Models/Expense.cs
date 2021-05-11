@@ -18,9 +18,9 @@ namespace InAndOut.Models
         public string ExpenseName { get; set; }
 
         [Required]
-        [Range(1,int.MaxValue,ErrorMessage ="Amount must be greater than 0!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Amount must be greater than 0!")]
         public int Amount { get; set; }
-        [Required]
+        [Range(1, int.MaxValue, ErrorMessage ="You must have a type selected!")]
         [DisplayName("Expense Type")]
         public int ExpenseTypeId { get; set; }
         [ForeignKey("ExpenseTypeId")]
