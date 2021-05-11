@@ -1,7 +1,7 @@
-﻿@model InAndOut.Models.Expense
+﻿@model InAndOut.Models.ViewModels.ExpenseVM
 
 <form method="post" asp-action="UpdatePost">
-    <input asp-for="Id" hidden />
+    <input asp-for="Expense.Id" hidden/>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="border p-3">
         <div class="form-group row">
@@ -10,22 +10,30 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group row">
-                    <div class="col-6">
-                        <label asp-for="ExpenseName"></label>
+                    <div class="col-4">
+                        <label asp-for="Expense.ExpenseName"></label>
                     </div>
-                    <div class="col-6">
-                        <label asp-for="Amount"></label>
+                    <div class="col-4">
+                        <label asp-for="Expense.Amount"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Expense.ExpenseType" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-6">
-                        <input asp-for="ExpenseName" class="form-control" />
-                        <span asp-validation-for="ExpenseName" class="text-danger" />
+                    <div class="col-4">
+                        <input asp-for="Expense.ExpenseName" class="form-control" />
+                        <span asp-validation-for="Expense.ExpenseName" class="text-danger" />
                     </div>
-                    <div class="col-6">
-                        <input asp-for="Amount" class="form-control" />
-                        <span asp-validation-for="Amount" class="text-danger" />
-
+                    <div class="col-4">
+                        <input asp-for="Expense.Amount" class="form-control" />
+                        <span asp-validation-for="Expense.Amount" class="text-danger" />
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="Expense.ExpenseTypeId" asp-items="@Model.ExpenseTypes" class="form-control">
+                            <option selected>--Select Expense Type--</option>
+                        </select>
+                        <span asp-validation-for="Expense.ExpenseTypeId" class="text-danger" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -46,5 +54,4 @@
 @section Scripts{
     @{
         <partial name="_ValidationScriptsPartial" />
-    }
-}
+    }}
